@@ -1,2 +1,2 @@
-# silence-template-v2-Employees
-A silence framework template about some employees and its departments.
+# Employees and departments
+This project contains a simple app to create and manage employees and departments.

@@ -1,25 +1,14 @@
-INSERT INTO Users (userId, username, password, name, surnames)
+INSERT INTO Departments (departmentId, name, city)
     VALUES
-	(1, 'labetica31','pbkdf2:sha256:150000$lr3IDhwA$39ca15dd006093fcb9dbc1755ceb5e9d2db7f2fbaf65243e1389259b46ec3245', 'Blanca', 'Gonzalez Daria'),
-	(2, 'sevillano78','pbkdf2:sha256:150000$UEnnhg0e$07d97fff772639f8b8c42a7d768ef66ca7380bcaba90a899ca435e00dff44818', 'Marco', 'Gracian Sainz');
--- The passwords are the same as the username
+	(1, 'Arte', 'Cádiz'),
+	(2, 'Historia', NULL),
+	(3, 'Informática', 'Sevilla');
 
-INSERT INTO Lists (listId, name, userId)
+INSERT INTO Employees (employeeId, email, password, departmentId, bossId, firstName, lastName, salary)
     VALUES
-	(1, "Tuesday 27th of october 2010s list", 1),
-	(2, "My List for today", 2);
-
-INSERT INTO Items (itemId, name, quantity, purchased, listId)
-    VALUES
-	(1, 'Tomates', 2, true, 1),
-	(2, 'Pepino', 1, true, 1),
-	(3, 'Azucar', 2, true, 1),
-	(4, 'Yogur', 3, true, 1),
-	(5, 'Leche', 2, true, 1),
-	(6, 'Magdalenas', 1, true, 1),
-	(7, 'Lechuga', 2, true, 2),
-	(8, 'Tortitas', 1, true, 2),
-	(9, 'Carne picada', 2, true, 2),
-	(10, 'Mayonesa', 1, true, 2),
-	(11, 'Queso', 2, true, 2),
-	(12, 'Salsa picante', 1, false, 2);
+	(1, "perianez@company.com", "pbkdf2:sha256:150000$E0m6fWQ4$75d0c4b1ac12a29db992372fcb5310ab585d3ff78851c476751d0b8254dfc2ae", 1, NULL, 'Pedro', 'Periáñez', 2300),
+	(2, "jimenez@company.com", "pbkdf2:sha256:150000$KrIt4AMI$11e887644fe162e8f5aadc20837380049c6dfed091e786fe5b4e9a5b1c2c6452", 1, 1, 'José', 'Jiménez', 2500),
+	(3, "lacalle@company.com", "pbkdf2:sha256:150000$FpWM4gWv$aa48e4baf5c54d298f780c2e83a234d3e1c3c543b48444b6d45ff7e8527f82c7", 2, 2, 'Lola', 'Lacalle', 2300),
+	(4, "linares@company.com", "pbkdf2:sha256:150000$Fx4Y8hCE$484b17e4ea7cf31c5dcd3b6cec3bd966337568631d6956b711c5cd495cdf7b0b", 3, 2, 'Luis', 'Linares', 1300),
+	(5, "alvarez@company.com", "pbkdf2:sha256:150000$sQVVX0u6$f7298fa07aee1015297e0564b7883dc5823d06b0da74c52a8a754a1808ba5bc2", 1, 3, 'Ana', 'Álvarez', 1300);
+-- The passwords are the email usernames (what goes before the @)

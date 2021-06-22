@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function showUser() {
     // Greet the user in the navbar
     let loggedUser = sessionManager.getLoggedUser();
-    let username = loggedUser !== null ? loggedUser.name : "Guest";
+    let username = loggedUser !== null ? loggedUser.firstName : "Guest";
     userLink.textContent = "Hi, " + username;
 }
 

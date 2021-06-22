@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Shows debug messages while Silence is running
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 
 # Database connection details
 DB_CONN = {
@@ -29,11 +29,10 @@ API_PREFIX = "/api/v1"
 
 # Table and fields that are used for both login and register
 USER_AUTH_DATA = {
-    "table": "Users",
-    "identifier": "username",
+    "table": "Employees",
+    "identifier": "email",
     "password": "password",
 }
-
 # A random string that is used for security purposes
 # (this has been generated automatically upon project creation)
-SECRET_KEY = "xhvXHN_SnkIq0ovpB6sK5exsevzsQ1NK3PfSYgvsIcI"
+SECRET_KEY = "GONTLoBsuDEa5IEEbpTL3v2HVzu_Fz3aTzBHGuu_hQI"

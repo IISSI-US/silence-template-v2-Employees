@@ -16,7 +16,7 @@
     <script src="js/libs/axios.min.js"></script>
     <script src="js/utils/include.js"></script>
 
-    <title>Create a new shopping list.</title>
+    <title>Create a new department</title>
 </head>
 
 <body>
@@ -27,24 +27,29 @@
 
         <div class="row">
             <div class="col-md text-center">
-                <h3>Create a new shopping list</h3>
+                <h3>Create a new department</h3>
             </div>
         </div>
 
         <hr>
 
-        <form id="list-form">
+        <form id="department-form">
             <div class="row">
-
                 <div class="col-md">
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label for="email">Name:</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="List name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Department name">
                         </div>
                     </div>
                 </div>
 
+                <div class="col-md">
+                    <div class="form-group">
+                        <label for="password">City:</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Department city">
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -65,7 +70,8 @@
     </script>
 
     <script type="module" src="js/header.js"></script>
-    <script type="module" src="js/create_shopping_list.js"></script>
+    <script type="module" src="js/create_department.js"></script>
+
 </body>
 
 </html>
