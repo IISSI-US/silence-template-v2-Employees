@@ -17,7 +17,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "Gets a departments with corresponding primary key"
+        "description": "Gets an entry from 'departments' by its primary key"
     },
     "create": {
         "route": "/departments",
@@ -27,7 +27,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "creates a new departments",
+        "description": "Creates a new entry in 'departments'",
         "request_body_params": [
             "name",
             "city"
@@ -41,7 +41,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "updates an existing departments with corresponding primary key",
+        "description": "Updates an existing entry in 'departments' by its primary key",
         "request_body_params": [
             "name",
             "city"
@@ -55,6 +55,6 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "deletes an existing departments with corresponding primary key"
+        "description": "Deletes an existing entry in 'departments' by its primary key"
     }
 }

@@ -17,7 +17,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "Gets a employees with corresponding primary key"
+        "description": "Gets an entry from 'employees' by its primary key"
     },
     "create": {
         "route": "/employees",
@@ -27,7 +27,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "creates a new employees",
+        "description": "Creates a new entry in 'employees'",
         "request_body_params": [
             "email",
             "password",
@@ -46,7 +46,7 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "updates an existing employees with corresponding primary key",
+        "description": "Updates an existing entry in 'employees' by its primary key",
         "request_body_params": [
             "email",
             "password",
@@ -65,6 +65,6 @@
         "allowed_roles": [
             "*"
         ],
-        "description": "deletes an existing employees with corresponding primary key"
+        "description": "Deletes an existing entry in 'employees' by its primary key"
     }
 }
