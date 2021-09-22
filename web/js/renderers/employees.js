@@ -2,8 +2,36 @@
 
 import { parseHTML } from '../utils/parseHTML.js';
 import { departmentsAPI_auto } from '../api/departments_auto.js';
+import { employeesAPI_auto } from '../api/employees_auto.js';
 
 const employeeRenderer = {
+    asProfile: function(employee, boss, department) {
+        
+        let html = 
+        `
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${employee.employeeId}</li>
+            <li class="list-group-item">Name: ${employee.firstName}</li>
+            <li class="list-group-item">Surname: ${employee.lastName}</li>
+            <li class="list-group-item">Salary: ${employee.salary} €</li>
+            <li class="list-group-item">Email: ${employee.email}</li>
+        `
+        if (boss != null){
+            html += `<li class="list-group-item">Boss: ${boss.firstName} ${boss.lastName} </li>`
+        }
+
+        if(department != null){
+            html += `<li class="list-group-item">Department: ${department.name} (${department.city}) </li>`
+        }       
+
+        html += 
+        `
+        </ul>        
+        `
+        return html;
+        
+    },
+
 
     // Converts an employee into a table row
     // and queries the Department API to get the name of their department

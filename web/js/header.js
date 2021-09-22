@@ -5,8 +5,10 @@ import { sessionManager } from './utils/session.js';
 // DOM elements that we will use
 const userLink = document.getElementById("showUsername");
 const logoutButton = document.getElementById("logout-button");
+const profileButton = document.getElementById("profile-button");
 const headerLogin = document.getElementById("header-login");
 const headerLogout = document.getElementById("header-logout");
+const headerProfile = document.getElementById("header-profile");
 
 function main() {
     showUser();
@@ -41,5 +43,6 @@ function hideHeaderOptions() {
         headerLogin.style.display = "none";
     } else {
         headerLogout.style.display = "none";
+        headerProfile.style.display = "none";
     }
 }
