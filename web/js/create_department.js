@@ -1,6 +1,6 @@
 "use strict";
 
-import { departmentsAPI_auto } from '/js/api/departments_auto.js';
+import { departmentsAPI_auto } from '/js/api/_departments.js';
 import { departmentsValidator } from '/js/validators/departments.js';
 import { messageRenderer } from '/js/renderers/messages.js';
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-function handleSendDepartment(event) {
+async function handleSendDepartment(event) {
     // Prevent the browser from sending the form on its own,
     // because we'll do it using AJAX
     event.preventDefault();
@@ -33,9 +33,14 @@ function handleSendDepartment(event) {
 
     if (errors.length === 0) {
         // No errors, create the department
-        departmentsAPI_auto.create(formData)
-            .then(_ => window.location.href = "index.html")
-            .catch(error => messageRenderer.showErrorAsAlert(error));
+        try{
+            await departmentsAPI_auto.create(formData)
+        }catch (e){
+            messageRenderer.showErrorAsAlert("Error al crear el departamento.", e)
+        }
+
+        window.location.href = "index.html";
+            
     } else {
         // Errors, display them
         for (let err of errors) {

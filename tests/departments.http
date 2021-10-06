@@ -21,30 +21,7 @@ Content-Type: application/json
 ###
 @token = {{register.response.body.sessionToken}}
 
-### Test 01: Add a new department successfully
-### Positive test
-### Associated requirements: RF-01
-POST {{BASE}}/departments
-Content-Type: application/json
-Token: {{token}}
-
-{
-    "name": "New Department",
-    "city": "New City"
-}
-
-### Test 02: Add a new department without a session token
-### Negative test
-### Associated requirements: RF-01
-POST {{BASE}}/departments
-Content-Type: application/json
-
-{
-    "name": "New Department 2",
-    "city": "New City"
-}
-
-### Test 03: Add a new department with the same name and city as another department
+### Test 01: Add a new department with the same name and city as another department
 ### Negative test
 ### Associated requirements: RF-01, RN-01
 @depName = {{departments.response.body.0.name}}
@@ -58,57 +35,7 @@ Token: {{token}}
     "city": "{{depCity}}"
 }
 
-### Test 04: Modify an existing department
-### Associated requirements: RF-02
-### Positive test
-@depId = {{departments.response.body.0.departmentId}}
-PUT {{BASE}}/departments/{{depId}}
-Content-Type: application/json
-Token: {{token}}
-
-{
-    "name": "Modified name",
-    "city": "Modified city"
-}
-
-### Test 05: Try to modify an existing department without a session token
-### Associated requirements: RF-02
-### Negative test
-@depId = {{departments.response.body.0.departmentId}}
-PUT {{BASE}}/departments/{{depId}}
-Content-Type: application/json
-
-{
-    "name": "Modified name",
-    "city": "Modified city"
-}
-
-### Test 06: Delete an existing department
-### Positive test
-### Associated requirements: RF-03
-
-### Create a new department, which we will delete
-# @name createdDptTest06
-POST {{BASE}}/departments
-Content-Type: application/json
-Token: {{token}}
-
-{
-    "name": "Dept. to delete",
-    "city": "Test City"
-}
-
-### Delete the department
-@deptId = {{createdDptTest06.response.body.lastId}}
-DELETE {{BASE}}/departments/{{deptId}}
-Token: {{token}}
-
-### Test 07: Try to delete a department without a session token
-### Negative test
-### Associated requirements: RF-03
-DELETE {{BASE}}/departments/{{deptId}}
-
-### Test 08: Try to delete a department that contains employees
+### Test 02: Try to delete a department that contains employees
 ### Negative test
 ### Associated requirements: RF-03, RN-02
 
@@ -142,10 +69,5 @@ Content-Type: application/json
 ### Try to delete the department
 DELETE {{BASE}}/departments/{{deptIdDelete}}
 Token: {{token}}
-
-### Test 09: Get all existing departments
-### Positive test
-### Associated requirements: RF-04
-GET {{BASE}}/departments
 
 ### Add as many additional tests as required...

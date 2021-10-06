@@ -6,8 +6,8 @@ import { messageRenderer } from './renderers/messages.js';
 import { employeesAPI } from '/js/api/employees.js';
 import { employeeRenderer } from '/js/renderers/employees.js';
 
-import { departmentsAPI_auto } from '/js/api/departments_auto.js';
-import { employeesAPI_auto } from '/js/api/employees_auto.js';
+import { departmentsAPI_auto } from '/js/api/_departments.js';
+import { employeesAPI_auto } from '/js/api/_employees.js';
 
 
 
@@ -16,45 +16,43 @@ const employeeCont = document.getElementById("employee");
 
 
 // Main function that will run when the page is ready
-function main() {
+async function main() {
     // Hide the options that shouldnt be available for not logged users
     setLoggedOptions();
 
     // Load the logged employee
-    employeesAPI.getLogged()
-        .then(employee => {
-            let emp = employee[0]
-            let promise_list = []
-            let boss = null;
-            let dept = null;
+    let employee;
+    try{
+        employee = await employeesAPI.getLogged();
+    }catch (e){
+        messageRenderer.showErrorAsAlert("Error retrieving logged employee", e)
+    }
 
-            if (emp.bossId != null){
-                let boss_p = employeesAPI_auto.getById(emp.bossId)
-                .then(_boss => {
-                    console.log(_boss)
-                    boss = _boss;
-                })
-                promise_list[0] = boss_p;
-            }
+    let boss = null;
+    let dept = null;
 
-            if (emp.departmentId != null){
-                let dept_p = departmentsAPI_auto.getById(emp.departmentId)
-                .then(_dept =>{
-                    console.log(_dept)
-                    dept = _dept
-                })
-                promise_list[1] = dept_p;
-            }
+    // If the employee has a boss we retrieve it.
+    if (employee.bossId != null){
+        try{
+            boss = employeesAPI_auto.getById(employee.bossId);
+        }catch(e){
+            messageRenderer.showErrorAsAlert("Error retrieving employee's boss", e)
+        }
+    }
 
-            Promise.allSettled(promise_list)
-            .then( _ => {
-                let logged = employeeRenderer.asProfile(emp, boss, dept);
-                employeeCont.innerHTML = logged;
-            }) 
-
-            
-        })
-        .catch(error => messageRenderer.showMessageAsAlert(error));
+    // If the employee has a department we retrieve it.
+    if (employee.departmentId != null){
+        try{
+            dept = departmentsAPI_auto.getById(employee.departmentId);
+        }catch(e){
+            messageRenderer.showErrorAsAlert("Error retrieving employee's department", e)
+        }
+    }
+    
+    // We wait for both the boss and the department to be retrieved, then render them as a profile.
+    let both_resolved = [await boss, await dept];
+    let logged = employeeRenderer.asProfile(employee, both_resolved[0], both_resolved[1]);
+    employeeCont.innerHTML = logged;
 }
 
 document.addEventListener("DOMContentLoaded", function () {

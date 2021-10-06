@@ -2,8 +2,8 @@
 
 import { sessionManager } from './utils/session.js';
 
-import { employeesAPI_auto } from '/js/api/employees_auto.js';
-import { departmentsAPI_auto } from '/js/api/departments_auto.js';
+import { employeesAPI_auto } from '/js/api/_employees.js';
+import { departmentsAPI_auto } from '/js/api/_departments.js';
 
 import { employeeRenderer } from '/js/renderers/employees.js';
 import { departmentRenderer } from '/js/renderers/departments.js';
@@ -20,20 +20,11 @@ function main() {
     setLoggedOptions();
 
     // Load the employees
-    employeesAPI_auto.getAll()
-        .then(employees => {
-            let table = employeeRenderer.asTable(employees);
-            employeesCont.appendChild(table);
-        })
-        .catch(error => messageRenderer.showErrorAsAlert(error));
+    loadEmployees();
     
     // Load the departments
-    departmentsAPI_auto.getAll()
-        .then(departments => {
-            let badgeGroup = departmentRenderer.asBadgeGroup(departments);
-            departmentsCont.appendChild(badgeGroup);
-        })
-        .catch(error => messageRenderer.showErrorAsAlert(error));
+    loadDepartments();
+    
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,6 +32,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 ///////////
+async function loadEmployees(){
+    let employees;
+    try{
+        employees = await employeesAPI_auto.getAll()
+    }catch (e){
+        messageRenderer.showErrorAsAlert("Error retrieving employees", e)
+    }
+
+    let table = employeeRenderer.asTable(employees);
+    employeesCont.appendChild(table);
+}
+
+async function loadDepartments(){
+    let departments;
+    try{
+        departments = await departmentsAPI_auto.getAll()
+    }catch(e){
+        messageRenderer.showErrorAsAlert("Error retrieving departments", e)
+    }
+
+    let badgeGroup = departmentRenderer.asBadgeGroup(departments);
+    departmentsCont.appendChild(badgeGroup);
+}
 
 function setLoggedOptions() {
     // Hide the things that shouldnt be available for non authenticated users

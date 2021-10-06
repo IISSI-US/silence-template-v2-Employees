@@ -1,8 +1,8 @@
 "use strict";
 
 import { parseHTML } from '../utils/parseHTML.js';
-import { departmentsAPI_auto } from '../api/departments_auto.js';
-import { employeesAPI_auto } from '../api/employees_auto.js';
+import { departmentsAPI_auto } from '../api/_departments.js';
+import { employeesAPI_auto } from '../api/_employees.js';
 
 const employeeRenderer = {
     asProfile: function(employee, boss, department) {

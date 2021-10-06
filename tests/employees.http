@@ -107,30 +107,4 @@ Content-Type: application/json
     "bossId": {{empBoss}}
 }
 
-### Test 07: Delete an existing employee successfully
-### Positive test
-### Associated requirements: RF-07
-
-### Create a new employee, which we will delete
-# @name createdEmpTest07
-POST {{BASE}}/register
-Content-Type: application/json
-
-{
-    "email": "test_employee_4@company.com",
-    "password": "123456",
-    "firstName": "Testing",
-    "lastName": "Employee 4",
-    "salary": 2000
-}
-
-### Delete the new employee
-@empId = {{createdEmpTest07.response.body.user.employeeId}}
-DELETE {{BASE}}/employees/{{empId}}
-
-### Test 08: Get all existing employees
-### Positive test
-### Associated requirements: RF-08
-GET {{BASE}}/employees
-
 ### Add as many additional tests as required...

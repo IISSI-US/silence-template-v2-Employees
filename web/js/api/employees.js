@@ -6,14 +6,9 @@
         /**
         * Gets currently logged employee.
         */
-        getLogged: function(){
-            return new Promise (function (resolve, reject) 
-            {
-                axios
-                    .get(`${BASE_URL}/employees/current`,requestOptions)
-                    .then(response => resolve(response.data))
-                    .catch(error => reject(error.response.data.message));
-                });
-            }
+        getLogged: async function(){
+            let response = await axios.get(`${BASE_URL}/employees/current`,requestOptions);
+            return response.data[0];
+        }
     }
     export {employeesAPI};
