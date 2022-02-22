@@ -41,5 +41,5 @@ function sendLogin(formData) {
             sessionManager.login(sessionToken, loggedUser);
             window.location.href = "index.html";
         })
-        .catch(error => messageRenderer.showErrorAsAlert(error));
+        .catch(error => messageRenderer.showErrorMessage(error));
 }

@@ -36,7 +36,7 @@ async function handleSendDepartment(event) {
         try{
             await departmentsAPI_auto.create(formData)
         }catch (e){
-            messageRenderer.showErrorAsAlert("Error al crear el departamento.", e)
+            messageRenderer.showErrorMessage("Error al crear el departamento.\n" + e)
         }
 
         window.location.href = "index.html";
@@ -44,7 +44,7 @@ async function handleSendDepartment(event) {
     } else {
         // Errors, display them
         for (let err of errors) {
-            messageRenderer.showErrorAsAlert(err);
+            messageRenderer.showErrorMessage(err);
         }
     }
 }
