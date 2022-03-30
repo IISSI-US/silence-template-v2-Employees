@@ -6,7 +6,7 @@ const departmentRenderer = {
 
     // Converts a department into a badge
     asBadge: function (department) {
-        let html = `<span class="badge badge-secondary badge-dpmt">
+        let html = `<span class="badge bg-secondary badge-dpmt">
                         ${department.name} (${department.city})
                     </span>`;
         let badge = parseHTML(html);
